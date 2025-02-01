@@ -16,7 +16,20 @@
             <button type="submit" style="float:right" class="btn btn-success btn-sm pull-right" >
                 Start
             </button>
+            @Model.Challenges
+            And the count is...
+            @Model.Challenges.Count()
+
+            <h1> And the challenges are...</h1>
+            @foreach (Challenge item in Model.Challenges) {
+                <h1> 
+                    @item.Name
+                    Jaso
+                </h1>
+            }
         </span>
     </form>
+
+
 
 </div>

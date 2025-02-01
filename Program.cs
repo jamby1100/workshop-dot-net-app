@@ -11,6 +11,7 @@ builder.Services.AddDbContext<WorkshopAppDbContext>(opts => {
         builder.Configuration["ConnectionStrings:WorkshopAppConnection"]);
 });
 builder.Services.AddScoped<IWorkshopRepository, EFWorkshopRepository>();
+builder.Services.AddScoped<IChallengeRepository, EFChallengeRepository>();
 
 var app = builder.Build();
 

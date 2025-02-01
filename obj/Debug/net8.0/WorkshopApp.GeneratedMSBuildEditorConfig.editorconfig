@@ -38,6 +38,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/raphael.jambalos/repo/learning/csharp-learn/WorkshopApp/Views/Workshop/DisplayAllWorkshops.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvV29ya3Nob3AvRGlzcGxheUFsbFdvcmtzaG9wcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/raphael.jambalos/repo/learning/csharp-learn/WorkshopApp/Views/Workshop/DisplayOneChallenge.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvV29ya3Nob3AvRGlzcGxheU9uZUNoYWxsZW5nZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/raphael.jambalos/repo/learning/csharp-learn/WorkshopApp/Views/Workshop/DisplayOneWorkshop.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvV29ya3Nob3AvRGlzcGxheU9uZVdvcmtzaG9wLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/raphael.jambalos/repo/learning/csharp-learn/WorkshopApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

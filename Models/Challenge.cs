@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace WorkshopApp.Models {
-    public class Workshop {
+    public class Challenge {
         [BindNever]
-        public int WorkshopId { get; set; }
+        public int ChallengeId { get; set; }
 
         [Required(ErrorMessage = "Pls enter a name")]
         public string? Name { get; set; }
@@ -15,12 +15,10 @@ namespace WorkshopApp.Models {
 
         [Required(ErrorMessage = "Add an estimate")]
         public double EstimateTimeToFinish { get; set; }
-        public bool Published { get; set; }
 
-        public ICollection<Challenge> Challenges { get; set; } = new List<Challenge>();
+        [Required(ErrorMessage = "Pls enter a challenge brief markdown")]
+        public string? ChallengeBriefMarkdown { get; set; }
 
-        public void Start(int userId) {
-            
-        }
+        public Workshop Workshop { get; set; } = new();
     }
 }

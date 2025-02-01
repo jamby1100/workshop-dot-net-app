@@ -8,25 +8,34 @@ namespace WorkshopApp.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private IWorkshopRepository repository;
+    private IWorkshopRepository workshopRepository;
+    private IChallengeRepository challengeRepository;
     public int PageSize = 4;
 
-    public HomeController(IWorkshopRepository repo) {
-        repository = repo;
+    public HomeController(IWorkshopRepository wrepo, IChallengeRepository crepo) {
+        workshopRepository = wrepo;
+        challengeRepository = crepo;
     }
 
-    public ViewResult Index(string? category, int workshopPage = 1)
-        => View(new WorkshopsListViewModel {
-            Workshops = repository.Workshops
-                .Skip((workshopPage - 1) * PageSize)
-                .Take(PageSize),
-            PagingInfo = new PagingInfo {
-                CurrentPage = workshopPage,
-                ItemsPerPage = PageSize,
-                TotalItems = repository.Workshops.Count()
-            },
-            CurrentCategory = category
-        });
+    public ViewResult Index(string? category, int workshopPage = 1) {
+        return View(
+            new WorkshopsListViewModel {
+                Workshops = workshopRepository.Workshops
+                    .Skip((workshopPage - 1) * PageSize)
+                    .Take(PageSize),
+                PagingInfo = new PagingInfo {
+                    CurrentPage = workshopPage,
+                    ItemsPerPage = PageSize,
+                    TotalItems = workshopRepository.Workshops.Count()
+                },
+                Challenges = challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == 1)
+            }
+        );
+
+        // challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == 1)
+    }
+
+
 
     public IActionResult Privacy()
     {

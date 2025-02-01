@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkshopApp.Models;
 
@@ -10,9 +11,11 @@ using WorkshopApp.Models;
 namespace WorkshopApp.Migrations
 {
     [DbContext(typeof(WorkshopAppDbContext))]
-    partial class WorkshopAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250129154915_WorkshopChallenges")]
+    partial class WorkshopChallenges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,6 +57,8 @@ namespace WorkshopApp.Migrations
                     b.ToTable("Challenge");
                 });
 
+            // Workshop workshopOne = 
+
             modelBuilder.Entity("WorkshopApp.Models.Workshop", b =>
                 {
                     b.Property<int>("WorkshopId")
@@ -79,6 +84,29 @@ namespace WorkshopApp.Migrations
                     b.HasKey("WorkshopId");
 
                     b.ToTable("Workshops");
+
+                    b.HasData(new Workshop {
+                            WorkshopId = 1,
+                            Name = "Serverless Challenge III",
+                            Description = "This is a challenge that will teach you all you need to know about serverless.",
+                            EstimateTimeToFinish = 120,
+                            Published = true,
+                            Challenges = [
+                                new Challenge {
+                                    Name = "Starting your Serverless Application",
+                                    Description = "Let's get started with your first serverless app deployment",
+                                    EstimateTimeToFinish = 10,
+                                    ChallengeBriefMarkdown = "# This is it [some link](https://google.com)"
+                                },
+                                new Challenge {
+                                    Name = "Adding DynamoDB Capability",
+                                    Description = "Let's add a real database",
+                                    EstimateTimeToFinish = 30,
+                                    ChallengeBriefMarkdown = "# This is it [some link](https://google.com)"
+                                }
+                            ]
+                        }
+                    );
                 });
 
             modelBuilder.Entity("WorkshopApp.Models.Challenge", b =>
@@ -90,6 +118,7 @@ namespace WorkshopApp.Migrations
                         .IsRequired();
 
                     b.Navigation("Workshop");
+
                 });
 
             modelBuilder.Entity("WorkshopApp.Models.Workshop", b =>

@@ -13,6 +13,13 @@
 
 This is it pancit
 
+
+@foreach (var p in Model.Challenges) {
+    <h1> Helo </h1>
+}
+
+Mewe
+
 @foreach (var p in Model.Workshops ?? Enumerable.Empty<Workshop>()) {
     <partial name="WorkshopSummary" model="p" />
 }
@@ -23,6 +30,5 @@ This is it pancit
     page-class="btn" 
     page-class-normal="btn-outline-dark" 
     page-class-selected="btn-primary" 
-    page-url-category="@Model.CurrentCategory!" 
     class="btn-group pull-right m-1">
 </div>

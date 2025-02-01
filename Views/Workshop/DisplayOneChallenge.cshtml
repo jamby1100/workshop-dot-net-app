@@ -1,0 +1,19 @@
+@model OneWorkshopView
+
+
+@foreach (var p in @Model.Challenges) {
+    <h5> @p.Name </h5>
+    <p> @p.Description</p>
+    <p> @p.ChallengeBriefMarkdown</p>
+
+
+        <form asp-page-handler="Submit" method="post">
+            <input type="hidden" name="ProductID" value="@p.ChallengeId" />
+            <input type="hidden" name="returnUrl" value="" />
+            <button type="submit" class="btn btn-sm btn-danger">
+                Submit
+            </button>
+        </form>
+
+
+}

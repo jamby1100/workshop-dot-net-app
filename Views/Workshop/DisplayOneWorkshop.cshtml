@@ -1,0 +1,10 @@
+@model OneWorkshopView
+
+<h1> @Model.WorkshopObject.Name </h1>
+<h3> @Model.WorkshopObject.Description </h3> 
+<h3> Number of Challenges: @Model.Challenges.Count() </h3>
+
+
+@foreach (var p in @Model.Challenges) {
+    <h5> @p.Name </h5>
+}
