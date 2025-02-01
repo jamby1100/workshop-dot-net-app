@@ -19,17 +19,17 @@ public class HomeController : Controller
 
     public ViewResult Index(string? category, int workshopPage = 1) {
         return View(
-            new WorkshopsListViewModel {
-                Workshops = workshopRepository.Workshops
-                    .Skip((workshopPage - 1) * PageSize)
-                    .Take(PageSize),
-                PagingInfo = new PagingInfo {
-                    CurrentPage = workshopPage,
-                    ItemsPerPage = PageSize,
-                    TotalItems = workshopRepository.Workshops.Count()
-                },
-                Challenges = challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == 1)
-            }
+            // new WorkshopsListViewModel {
+            //     Workshops = workshopRepository.Workshops
+            //         .Skip((workshopPage - 1) * PageSize)
+            //         .Take(PageSize),
+            //     PagingInfo = new PagingInfo {
+            //         CurrentPage = workshopPage,
+            //         ItemsPerPage = PageSize,
+            //         TotalItems = workshopRepository.Workshops.Count()
+            //     },
+            //     Challenges = challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == 1)
+            // }
         );
 
         // challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == 1)

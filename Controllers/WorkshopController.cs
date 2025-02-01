@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WorkshopApp.Models;
 using WorkshopApp.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace WorkshopApp.Controllers;
 
@@ -11,11 +12,15 @@ public class WorkshopController : Controller
     private readonly ILogger<WorkshopController> _logger;
     private IWorkshopRepository workshopRepository;
     private IChallengeRepository challengeRepository;
+
+    private UserManager<IdentityUser> _userManager;
+
     public int PageSize = 4;
 
-    public WorkshopController(IWorkshopRepository wrepo, IChallengeRepository crepo) {
+    public WorkshopController(IWorkshopRepository wrepo, IChallengeRepository crepo, UserManager<IdentityUser> userManager) {
         workshopRepository = wrepo;
         challengeRepository = crepo;
+        _userManager = userManager;
     }
 
 
@@ -38,6 +43,13 @@ public class WorkshopController : Controller
     [HttpGet("/workshops")]
     [Authorize]
     public ViewResult DisplayAllWorkshops(int workshopPage = 1) {
+        Console.WriteLine("And the user is...");
+        Console.WriteLine(this.User);
+        Console.WriteLine("And the user id is...");
+        Console.WriteLine(_userManager.GetUserId(User));
+
+
+
         return View(
             new WorkshopsListViewModel {
                 Workshops = workshopRepository.Workshops
@@ -48,7 +60,12 @@ public class WorkshopController : Controller
                     ItemsPerPage = PageSize,
                     TotalItems = workshopRepository.Workshops.Count()
                 },
-                Challenges = challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == 1)
+                Challenges = challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == 1),
+                UserDisplay = new UserDisplayViewModel {
+                    UserId = _userManager.GetUserId(User),
+                    UserName = _userManager.GetUserName(User),
+                    UserEmail = ""
+                } 
             }
         );
     }

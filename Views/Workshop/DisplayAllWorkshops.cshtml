@@ -12,13 +12,15 @@
 <div class="text-center">
     <h1 class="display-4">Workshops</h1>
     <p>Unlock the power of learning</p>
+
+    Welcome @Model.UserDisplay.UserId
 </div>
 
 
 @foreach (var p in Model.Workshops ?? Enumerable.Empty<Workshop>()) {
     <partial name="WorkshopSummary" model="p" />
 }
-
+2
 <div page-model="@Model.PagingInfo" 
     page-action="Index" 
     page-classes-enabled="true" 
