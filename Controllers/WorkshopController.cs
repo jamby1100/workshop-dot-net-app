@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WorkshopApp.Models;
 using WorkshopApp.Models.ViewModels;
@@ -35,6 +36,7 @@ public class WorkshopController : Controller
     }
 
     [HttpGet("/workshops")]
+    [Authorize]
     public ViewResult DisplayAllWorkshops(int workshopPage = 1) {
         return View(
             new WorkshopsListViewModel {
@@ -49,6 +51,12 @@ public class WorkshopController : Controller
                 Challenges = challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == 1)
             }
         );
+    }
+
+    [HttpPost]
+    public IActionResult StartWorkshop(Workshop workshop) {
+        // workshop.start()
+        return RedirectToPage($"/workshops/{workshop.WorkshopId}");
     }
 
 }

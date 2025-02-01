@@ -15,4 +15,14 @@ dotnet tool uninstall --global dotnet-ef
 dotnet tool install --global dotnet-ef --version 7.0.0
 
 dotnet ef migrations add Initial
+
+dotnet ef migrations add WorkshopChallenges
+dotnet ef migrations add WorkshopChallengesSeed
+```
+
+```sh
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore --version 7.0.0
+
+dotnet ef migrations add Initial --context AppIdentityDbContext
+dotnet ef database update --context AppIdentityDbContext
 ```
