@@ -45,11 +45,24 @@ public class WorkshopController : Controller
         Console.WriteLine("And the userWp is...");
         Console.WriteLine(userWp);
 
+        Console.WriteLine("And this is it!!");
+        Console.WriteLine(workshopId);
+        Console.WriteLine(challengeProgressRepository.ChallengeProgresses.Where(cp => cp.Workshop.WorkshopId == workshopId).Count());
+
+        IEnumerable<Challenge> challenges = challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == workshopId);
+
+        Dictionary<int,Challenge> ChallengeDict = new Dictionary<int,Challenge>();
+
+        foreach (Challenge ch in challenges) {
+            ChallengeDict[ch.ChallengeId] = ch;
+        };
+
         return View(new OneWorkshopView {
             WorkshopObject = workshopRepository.Workshops.Where(p => p.WorkshopId == workshopId).FirstOrDefault(),
-            Challenges = challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == workshopId),
+            ChallengeProgressList = challengeProgressRepository.ChallengeProgresses.Where(cp => cp.Workshop.WorkshopId == workshopId),
             WorkshopProgressObject = userWp,
-            WorkshopId = workshopId
+            WorkshopId = workshopId,
+            ChallengesDictionary = ChallengeDict
         });
     }
     
@@ -118,6 +131,19 @@ public class WorkshopController : Controller
         Console.WriteLine("And the user id is...");
         Console.WriteLine(_userManager.GetUserId(User));
 
+        IEnumerable<Challenge> challenges = challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == workshopId);
+
+        foreach (Challenge ch in challenges) {
+            ChallengeProgress challengeProgressObj = new ChallengeProgress {
+                UserId = _userManager.GetUserId(User),
+                Workshop = workshopObj,
+                Challenge = ch,
+                ChallengeStatus = "pending"
+            };
+
+            challengeProgressRepository.CreateChallengeProgress(challengeProgressObj);
+        }
+
         WorkshopProgress workshopProgressObject = new WorkshopProgress {
             UserId = _userManager.GetUserId(User),
             Workshop = workshopObj
@@ -126,7 +152,7 @@ public class WorkshopController : Controller
         workshopProgressRepository.CreateWorkshopProgress(workshopProgressObject);
         // workshopObj.Start(_userManager.GetUserId(User));
 
-        return RedirectToPage($"/workshops/{workshopId}");
+        return Redirect($"/workshops/{workshopId}");
     }
 
     [HttpPost("/submitChallenge")]
@@ -142,15 +168,24 @@ public class WorkshopController : Controller
         Console.WriteLine(challengeObj);
         Console.WriteLine(challengeObj.Name);
 
-        ChallengeProgress challengeProgressObj = new ChallengeProgress {
-            UserId = _userManager.GetUserId(User),
-            Workshop = workshopObj,
-            Challenge = challengeObj,
-            ChallengeStatus = "pending"
-        };
+        Console.WriteLine("And the user is...");
+        Console.WriteLine(this.User);
+        Console.WriteLine("And the user id is...");
+        Console.WriteLine(_userManager.GetUserId(User));
+        string? userId = _userManager.GetUserId(User);
 
-        challengeProgressRepository.CreateChallengeProgress(challengeProgressObj);
+        ChallengeProgress chPrg = challengeProgressRepository.ChallengeProgresses.Where(
+            p => p.Challenge.ChallengeId == challengeId && p.UserId == userId)
+            .FirstOrDefault();
 
+        if (chPrg == null) {
+            Console.WriteLine("Error");
+        } else {
+            Console.WriteLine("It is now pending...");
+
+            chPrg.ChallengeStatus = "submitted";
+            challengeProgressRepository.SaveChallengeProgress(chPrg);
+        }
         return Redirect($"/workshops/{workshopId}/challenges/{challengeId}");
     }
 

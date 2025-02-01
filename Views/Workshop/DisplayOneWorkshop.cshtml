@@ -2,7 +2,9 @@
 
 <h1> @Model.WorkshopObject.Name </h1>
 <h3> @Model.WorkshopObject.Description </h3> 
-<h3> Number of Challenges: @Model.Challenges.Count() </h3>
+<h3> Number of Challenges: @Model.ChallengeProgressList </h3>
+<h3> Yes </h3>
+<h3> Number of Challenges: @Model.ChallengeProgressList.Count() </h3>
 
 And the wpobj is:
 @if (@Model.WorkshopProgressObject == null) {
@@ -17,10 +19,12 @@ And the wpobj is:
 
 } else {
     <p> currently enrolled! </p>
-    @Model.WorkshopProgressObject.UserId
+    <br>
+    <br>
 
-    @foreach (var p in @Model.Challenges) {
-        <h5> @p.Name </h5>
+    @foreach (var p in @Model.ChallengeProgressList) {
+        <h5> @p.Challenge.Name </h5>
+        <p> Status: @p.ChallengeStatus </p>
         <a href="/workshops/@Model.WorkshopId/challenges/@p.ChallengeId"> View </a>
     }
 }

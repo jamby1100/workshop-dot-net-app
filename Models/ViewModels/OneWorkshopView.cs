@@ -8,6 +8,10 @@ namespace WorkshopApp.Models.ViewModels {
 
         public ChallengeProgress? ChallengeProgressObject { get; set; } = new();
         
+        public IEnumerable<ChallengeProgress> ChallengeProgressList { get; set; } = Enumerable.Empty<ChallengeProgress>();
+
+        public Dictionary<int,Challenge> ChallengesDictionary { get; set;} = new();
+        
         public int WorkshopId { get; set; }
 
         public int ChallengeId  { get; set; }

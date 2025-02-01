@@ -5,7 +5,7 @@
     <p> @p.Description</p>
     <p> @p.ChallengeBriefMarkdown</p>
 
-    @if (@Model.ChallengeProgressObject == null) {
+    @if (@Model.ChallengeProgressObject.ChallengeStatus == "pending") {
         <form asp-action="SubmitChallenge" asp-controller="Workshop" method="post">
             <input type="hidden" asp-for="WorkshopId" value="@Model.WorkshopId"/>
             <input type="hidden" asp-for="ChallengeId" value="@p.ChallengeId"/>
@@ -14,7 +14,7 @@
             </button>
         </form>
     } else {
-        @if (@Model.ChallengeProgressObject.ChallengeStatus == "pending") {
+        @if (@Model.ChallengeProgressObject.ChallengeStatus == "submitted") {
             <p> Submitted already pending</p>
         }
 
