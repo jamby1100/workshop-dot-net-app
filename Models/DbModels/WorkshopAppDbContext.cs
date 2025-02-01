@@ -8,5 +8,7 @@ namespace WorkshopApp.Models {
         public DbSet<Challenge> Challenges => Set<Challenge>();
 
         public DbSet<WorkshopProgress> WorkshopProgresses => Set<WorkshopProgress>();
+
+        public DbSet<ChallengeProgress> ChallengeProgresses => Set<ChallengeProgress>();
     }
 }

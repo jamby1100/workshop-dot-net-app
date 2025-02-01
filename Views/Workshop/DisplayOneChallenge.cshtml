@@ -5,12 +5,29 @@
     <p> @p.Description</p>
     <p> @p.ChallengeBriefMarkdown</p>
 
-    <form asp-action="SubmitChallenge" asp-controller="Workshop" method="post">
-        <input type="hidden" asp-for="WorkshopId" value="@Model.WorkshopId"/>
-        <input type="hidden" asp-for="ChallengeId" value="@p.ChallengeId"/>
-        <button class="btn btn-primary mt-2" type="submit">
-            Mark as for submission
-        </button>
-    </form>
+    @if (@Model.ChallengeProgressObject == null) {
+        <form asp-action="SubmitChallenge" asp-controller="Workshop" method="post">
+            <input type="hidden" asp-for="WorkshopId" value="@Model.WorkshopId"/>
+            <input type="hidden" asp-for="ChallengeId" value="@p.ChallengeId"/>
+            <button class="btn btn-primary mt-2" type="submit">
+                Submit Challenge
+            </button>
+        </form>
+    } else {
+        @if (@Model.ChallengeProgressObject.ChallengeStatus == "pending") {
+            <p> Submitted already pending</p>
+        }
+
+        @if (@Model.ChallengeProgressObject.ChallengeStatus == "rejected") {
+            <form asp-action="ResubmitChallenge" asp-controller="Workshop" method="post">
+                <input type="hidden" asp-for="WorkshopId" value="@Model.WorkshopId"/>
+                <input type="hidden" asp-for="ChallengeId" value="@p.ChallengeId"/>
+                <button class="btn btn-primary mt-2" type="submit">
+                    Resubmit Challenge
+                </button>
+            </form>
+        }
+        
+    }
 
 }

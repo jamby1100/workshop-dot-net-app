@@ -15,6 +15,8 @@ public class WorkshopController : Controller
 
     private IWorkshopProgressRepository workshopProgressRepository;
 
+    private IChallengeProgressRepository challengeProgressRepository;
+
     private UserManager<IdentityUser> _userManager;
 
     public int PageSize = 4;
@@ -23,12 +25,14 @@ public class WorkshopController : Controller
         IWorkshopRepository wrepo, 
         IChallengeRepository crepo, 
         UserManager<IdentityUser> userManager, 
-        IWorkshopProgressRepository wprgRepo) {
+        IWorkshopProgressRepository wprgRepo,
+        IChallengeProgressRepository chlgRepo) {
 
             workshopRepository = wrepo;
             challengeRepository = crepo;
             _userManager = userManager;
             workshopProgressRepository = wprgRepo;
+            challengeProgressRepository = chlgRepo;
     }
 
 
@@ -44,7 +48,8 @@ public class WorkshopController : Controller
         return View(new OneWorkshopView {
             WorkshopObject = workshopRepository.Workshops.Where(p => p.WorkshopId == workshopId).FirstOrDefault(),
             Challenges = challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == workshopId),
-            WorkshopProgressObject = userWp
+            WorkshopProgressObject = userWp,
+            WorkshopId = workshopId
         });
     }
     
@@ -52,13 +57,17 @@ public class WorkshopController : Controller
     [Authorize]
     public ViewResult DisplayOneChallenge(int workshopId, int challengeId) {
         string userId = "c91607c4-3903-482d-b1c7-25bcc13d4696"; // && p.UserId == userId
-        WorkshopProgress? userWp = workshopProgressRepository.WorkshopProgresses.Where(p => p.Workshop.WorkshopId == 1).FirstOrDefault();
+        WorkshopProgress? userWp = workshopProgressRepository.WorkshopProgresses.Where(p => p.Workshop.WorkshopId == workshopId).FirstOrDefault();
         Workshop? workshopObj = workshopRepository.Workshops.Where(p => p.WorkshopId == workshopId).FirstOrDefault();
+        ChallengeProgress? userChlg = challengeProgressRepository.ChallengeProgresses.Where(p => p.Challenge.ChallengeId == challengeId).FirstOrDefault();
 
         return View(new OneWorkshopView {
             WorkshopObject = workshopObj,
             Challenges = challengeRepository.Challenges.Where(p => p.ChallengeId == challengeId),
-            WorkshopProgressObject = userWp
+            WorkshopProgressObject = userWp,
+            ChallengeProgressObject = userChlg,
+            ChallengeId = challengeId,
+            WorkshopId = workshopId
         });
     }
 
@@ -123,7 +132,51 @@ public class WorkshopController : Controller
     [HttpPost("/submitChallenge")]
     [Authorize]
     public IActionResult SubmitChallenge(int workshopId, int challengeId) {
-        return RedirectToPage($"/workshops/{workshopId}/challenges/{challengeId}");
+        Console.WriteLine("Confirming start");
+        Console.WriteLine(workshopId);
+        Workshop workshopObj = workshopRepository.Workshops.Where(p => p.WorkshopId == workshopId).FirstOrDefault();
+        Console.WriteLine(workshopObj);
+        Console.WriteLine(workshopObj.Name);
+
+        Challenge challengeObj = challengeRepository.Challenges.Where(p => p.ChallengeId == challengeId).FirstOrDefault();
+        Console.WriteLine(challengeObj);
+        Console.WriteLine(challengeObj.Name);
+
+        ChallengeProgress challengeProgressObj = new ChallengeProgress {
+            UserId = _userManager.GetUserId(User),
+            Workshop = workshopObj,
+            Challenge = challengeObj,
+            ChallengeStatus = "pending"
+        };
+
+        challengeProgressRepository.CreateChallengeProgress(challengeProgressObj);
+
+        return Redirect($"/workshops/{workshopId}/challenges/{challengeId}");
+    }
+
+    [HttpPost("/resubmitChallenge")]
+    [Authorize]
+    public IActionResult ResubmitChallenge(int workshopId, int challengeId) {
+        Console.WriteLine("And the user is...");
+        Console.WriteLine(this.User);
+        Console.WriteLine("And the user id is...");
+        Console.WriteLine(_userManager.GetUserId(User));
+        string? userId = _userManager.GetUserId(User);
+
+        ChallengeProgress chPrg = challengeProgressRepository.ChallengeProgresses.Where(
+            p => p.Challenge.ChallengeId == challengeId && p.UserId == userId)
+            .FirstOrDefault();
+
+        if (chPrg == null) {
+            Console.WriteLine("Error");
+        } else {
+            Console.WriteLine("It is now pending...");
+
+            chPrg.ChallengeStatus = "pending";
+            challengeProgressRepository.SaveChallengeProgress(chPrg);
+        }
+
+        return Redirect($"/workshops/{workshopId}/challenges/{challengeId}");
     }
 
 }

@@ -14,6 +14,7 @@ builder.Services.AddDbContext<WorkshopAppDbContext>(opts => {
 builder.Services.AddScoped<IWorkshopRepository, EFWorkshopRepository>();
 builder.Services.AddScoped<IChallengeRepository, EFChallengeRepository>();
 builder.Services.AddScoped<IWorkshopProgressRepository, EFWorkshopProgressRepository>();
+builder.Services.AddScoped<IChallengeProgressRepository, EFChallengeProgressRepository>();
 
 
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>

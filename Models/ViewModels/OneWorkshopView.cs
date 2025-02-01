@@ -6,6 +6,8 @@ namespace WorkshopApp.Models.ViewModels {
 
         public WorkshopProgress? WorkshopProgressObject { get; set; } = new();
 
+        public ChallengeProgress? ChallengeProgressObject { get; set; } = new();
+        
         public int WorkshopId { get; set; }
 
         public int ChallengeId  { get; set; }
