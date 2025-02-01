@@ -6,5 +6,7 @@ namespace WorkshopApp.Models {
         public DbSet<Workshop> Workshops => Set<Workshop>();
 
         public DbSet<Challenge> Challenges => Set<Challenge>();
+
+        public DbSet<WorkshopProgress> WorkshopProgresses => Set<WorkshopProgress>();
     }
 }

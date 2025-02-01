@@ -18,9 +18,5 @@ namespace WorkshopApp.Models {
         public bool Published { get; set; }
 
         public ICollection<Challenge> Challenges { get; set; } = new List<Challenge>();
-
-        public void Start(int userId) {
-            
-        }
     }
 }

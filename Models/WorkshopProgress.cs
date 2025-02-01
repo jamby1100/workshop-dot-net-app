@@ -7,6 +7,9 @@ namespace WorkshopApp.Models {
         [BindNever]
         public int WorkshopProgressId { get; set; }
 
+        [Required]
+        public string? UserId { get; set; }
+
         public Workshop Workshop { get; set; } = new();
 
     }

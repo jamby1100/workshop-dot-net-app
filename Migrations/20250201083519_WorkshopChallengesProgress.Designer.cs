@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkshopApp.Models;
 
@@ -10,9 +11,11 @@ using WorkshopApp.Models;
 namespace WorkshopApp.Migrations
 {
     [DbContext(typeof(WorkshopAppDbContext))]
-    partial class WorkshopAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250201083519_WorkshopChallengesProgress")]
+    partial class WorkshopChallengesProgress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

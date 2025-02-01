@@ -25,4 +25,7 @@ dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore --version 7
 
 dotnet ef migrations add Initial --context AppIdentityDbContext
 dotnet ef database update --context AppIdentityDbContext
+
+dotnet ef migrations add WorkshopChallengesProgress --context WorkshopAppDbContext
+dotnet ef database update --context WorkshopAppDbContext
 ```
