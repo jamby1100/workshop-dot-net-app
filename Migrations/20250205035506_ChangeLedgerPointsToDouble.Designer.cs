@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkshopApp.Models;
 
@@ -10,9 +11,11 @@ using WorkshopApp.Models;
 namespace WorkshopApp.Migrations
 {
     [DbContext(typeof(WorkshopAppDbContext))]
-    partial class WorkshopAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250205035506_ChangeLedgerPointsToDouble")]
+    partial class ChangeLedgerPointsToDouble
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,9 +46,6 @@ namespace WorkshopApp.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Points")
-                        .HasColumnType("float");
 
                     b.Property<int>("WorkshopId")
                         .HasColumnType("int");

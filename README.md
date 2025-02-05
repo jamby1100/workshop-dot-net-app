@@ -38,9 +38,6 @@ dotnet ef database update --context WorkshopAppDbContext
 dotnet ef migrations add AddChallengesProgress --context WorkshopAppDbContext
 dotnet ef database update --context WorkshopAppDbContext
 
-dotnet ef database drop --context WorkshopAppDbContext --force 
-dotnet ef database update --context WorkshopAppDbContext
-
 dotnet ef migrations add AddLedgerModels --context WorkshopAppDbContext
 dotnet ef database update --context WorkshopAppDbContext
 
@@ -59,6 +56,19 @@ dotnet ef database update --context WorkshopAppDbContext
 dotnet ef migrations add RemoveChallengeAndWorkshopAssociationsFromHintProgressTable --context WorkshopAppDbContext
 dotnet ef database update --context WorkshopAppDbContext
 
+dotnet ef migrations add AddPriceToHints --context WorkshopAppDbContext
+dotnet ef database update --context WorkshopAppDbContext
+
+dotnet ef migrations add ChangeLedgerPointsToDouble --context WorkshopAppDbContext
+dotnet ef database update --context WorkshopAppDbContext
+
+dotnet ef migrations add AddPointsToChallenge --context WorkshopAppDbContext
+dotnet ef database update --context WorkshopAppDbContext
+
+
+
+dotnet ef database drop --context WorkshopAppDbContext --force 
+dotnet ef database update --context WorkshopAppDbContext
 
 ```
 

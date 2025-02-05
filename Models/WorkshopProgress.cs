@@ -12,5 +12,7 @@ namespace WorkshopApp.Models {
 
         public Workshop Workshop { get; set; } = new();
 
+        public int WorkshopId { get; set; }
+
     }
 }

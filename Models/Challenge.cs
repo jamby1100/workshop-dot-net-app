@@ -20,5 +20,7 @@ namespace WorkshopApp.Models {
         public string? ChallengeBriefMarkdown { get; set; }
 
         public Workshop Workshop { get; set; } = new();
+
+        public double Points { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace WorkshopApp.Models {
 
         public int WorkshopId { get; set; }
 
-        public int Points { get; set; }
+        public double Points { get; set; }
 
     }
 }

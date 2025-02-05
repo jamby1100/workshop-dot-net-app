@@ -16,5 +16,15 @@ namespace WorkshopApp.Models {
         public Hint Hint { get; set; } = new();
 
         public int HintId { get; set; }
+
+        public string RenderState(string status, double price) {
+            if (status == "bought") {
+                return $"Bought for {price} pts";
+            } else if (status == "pending") {
+                return $"Pending";
+            }
+
+            return "Unknown State";
+        }
     }
 }

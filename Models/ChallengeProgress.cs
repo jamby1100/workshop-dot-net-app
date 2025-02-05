@@ -19,5 +19,7 @@ namespace WorkshopApp.Models {
 
         public int ChallengeId { get; set; }
 
+        public int WorkshopId { get; set; }
+
     }
 }

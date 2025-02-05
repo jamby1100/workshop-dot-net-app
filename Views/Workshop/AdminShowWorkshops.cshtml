@@ -1,0 +1,81 @@
+@model OneWorkshopView
+
+<br>
+<br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Remarks</th>
+      <th scope="col">Points</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>
+    <tbody>
+        @foreach (var row in @Model.ChallengeProgressList) {
+            <tr>
+                <td> @row.Challenge.Name </td>
+                <td> @row.Challenge.Points </td>
+                <td> @row.ChallengeStatus </td>
+                <td>
+
+                  <form asp-action="SubmitChallenge" asp-controller="Workshop" method="post">
+                      <input type="hidden" asp-for="WorkshopId" value="@Model.WorkshopId"/>
+                      <input type="hidden" asp-for="ChallengeId" value="@row.ChallengeId"/>
+                      <input type="hidden" asp-for="TargetStatus" value="accepted"/>
+                      <button class="btn btn-primary mt-2" type="submit">
+                          Accept
+                      </button>
+                  </form>
+
+                  <form asp-action="SubmitChallenge" asp-controller="Workshop" method="post">
+                      <input type="hidden" asp-for="WorkshopId" value="@Model.WorkshopId"/>
+                      <input type="hidden" asp-for="ChallengeId" value="@row.ChallengeId"/>
+                      <input type="hidden" asp-for="TargetStatus" value="rejected"/>
+                      <button class="btn btn-primary mt-2" type="submit">
+                          Reject
+                      </button>
+                  </form>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+  </thead>
+  <tbody>
+
+<br>
+<br>
+
+<h1> Points Ledger for @Model.UserId </h1>
+<h2> You have @Model.sumOfPoints Points </h2>
+<br>
+<br>
+
+
+<form asp-action="AdminAddPoints" asp-controller="Workshop" method="post">
+    <input type="hidden" asp-for="WorkshopId" value="@Model.WorkshopId"/>
+    <input type="text" asp-for="PointsValue">
+    <input type="text" asp-for="RemarksValue">
+    <button class="btn btn-primary mt-2" type="submit">
+        Add Pts
+    </button>
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Remarks</th>
+      <th scope="col">Points</th>
+    </tr>
+    <tbody>
+        @foreach (var row in @Model.LedgerTable) {
+            <tr>
+                <td> @row.Remarks </td>
+                <td> @row.Points </td>
+            </tr>
+        }
+    </tbody>
+  </thead>
+  <tbody>
+</table>

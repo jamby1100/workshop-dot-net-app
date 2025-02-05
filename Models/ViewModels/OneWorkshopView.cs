@@ -10,7 +10,13 @@ namespace WorkshopApp.Models.ViewModels {
         
         public IEnumerable<ChallengeProgress> ChallengeProgressList { get; set; } = Enumerable.Empty<ChallengeProgress>();
 
+        public IEnumerable<WorkshopProgress> WorkshopProgressList { get; set; } = Enumerable.Empty<WorkshopProgress>();
+
+        
+
         public IEnumerable<HintProgress> HintProgressList { get; set; } = Enumerable.Empty<HintProgress>();
+
+        public IEnumerable<PointsLedgerEntry> LedgerTable { get; set; } = Enumerable.Empty<PointsLedgerEntry>();
 
         public HintProgress HintProgressOne { get; set; } = new();
 
@@ -23,5 +29,16 @@ namespace WorkshopApp.Models.ViewModels {
         public int ChallengeId  { get; set; }
 
         public int HintId { get; set; }
+
+        public string sumOfPoints { get; set; }
+
+        public double PointsValue { get; set; }
+
+        public string RemarksValue { get; set; }
+
+        public string UserId { get; set; }
+
+        public string TargetStatus { get; set; }
+
     }
 }

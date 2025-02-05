@@ -33,7 +33,17 @@
     <br>
 
     @foreach (var p in @Model.ChallengeProgressList) {
-        <div class="card card-outline-primary m-1 p-1">
+
+        <div class="card" style="">
+        <div class="card-body">
+            <h5 class="card-title">@p.Challenge.Name</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Status: @p.ChallengeStatus</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="/workshops/@Model.WorkshopId/challenges/@p.ChallengeId" class="card-link">View</a>
+        </div>
+        </div>
+
+        @* <div class="card card-outline-primary m-1 p-1">
             <div class="bg-faded p-1">
                 <h4>
                     @p.Challenge.Name
@@ -48,7 +58,33 @@
             <span class="card-text p-1">
                 @p.Challenge.Description
             </span>
-        </div>
+        </div> *@
 
     }
 }
+
+<br>
+<br>
+
+<h1> Points Ledger </h1>
+<h2> You have @Model.sumOfPoints Points </h2>
+<br>
+<br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Remarks</th>
+      <th scope="col">Points</th>
+    </tr>
+    <tbody>
+        @foreach (var row in @Model.LedgerTable) {
+            <tr>
+                <td> @row.Remarks </td>
+                <td> @row.Points </td>
+            </tr>
+        }
+    </tbody>
+  </thead>
+  <tbody>
+</table>

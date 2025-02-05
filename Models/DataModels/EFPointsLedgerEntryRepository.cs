@@ -6,7 +6,7 @@ namespace WorkshopApp.Models {
             context = ctx;
         }
 
-        public IQueryable<PointsLedgerEntry> PointsLedgerEntrys => context.PointsLedgerEntries;
+        public IQueryable<PointsLedgerEntry> PointsLedgerEntries => context.PointsLedgerEntries;
 
         public void CreatePointsLedgerEntry(PointsLedgerEntry p) {
             context.Add(p);

@@ -61,6 +61,11 @@ public class WorkshopController : Controller
         Dictionary<int,Challenge> ChallengeDict = new Dictionary<int,Challenge>();
         IEnumerable<ChallengeProgress> challengeProgressList = challengeProgressRepository.ChallengeProgresses.Where(cp => cp.Workshop.WorkshopId == workshopId && cp.UserId == userId);
 
+        IEnumerable<PointsLedgerEntry> ledgerTable = pointsLedgerEntryRepository.PointsLedgerEntries.Where(ple => ple.UserId == ple.UserId && ple.WorkshopId == workshopId);
+
+        String sumOfPoints = ledgerTable.Sum(i => i.Points).ToString();
+        Console.WriteLine($"The sum of points are {sumOfPoints}");
+
         foreach (Challenge ch in challenges) {
             ChallengeDict[ch.ChallengeId] = ch;
         };
@@ -71,6 +76,8 @@ public class WorkshopController : Controller
             WorkshopProgressObject = userWp,
             WorkshopId = workshopId,
             ChallengesDictionary = ChallengeDict,
+            LedgerTable = ledgerTable,
+            sumOfPoints = sumOfPoints
             // HintProgressOne = hintWp
         });
     }
@@ -206,8 +213,25 @@ public class WorkshopController : Controller
 
         HintProgress? hintProgressObj = hintProgressRepository.HintProgresses.Where(p => p.HintId == HintId && p.UserId == userId).FirstOrDefault();
         hintProgressObj.HintStatus = "bought";
+        Workshop? workshopObj = workshopRepository.Workshops.Where(p => p.WorkshopId == workshopId).FirstOrDefault();
+        Hint? hintObj = hintRepository.Hints.Where(p => p.HintId == HintId).FirstOrDefault();
 
         hintProgressRepository.SaveHintProgress(hintProgressObj);
+
+        PointsLedgerEntry ple = new PointsLedgerEntry {
+            UserId = userId,
+            Workshop = workshopObj,
+            Points = hintObj.Price * -1,
+            Remarks = $"Bought hint for {hintObj.Price} pts. Hint is {hintObj.Name}"
+        };
+
+        Console.WriteLine("The ple is ready...");
+        Console.WriteLine(ple);
+        Console.WriteLine(ple.Points);
+
+        pointsLedgerEntryRepository.CreatePointsLedgerEntry(ple);
+
+        Console.WriteLine("The ple should be committed...");
 
         return Redirect($"/workshops/{workshopId}/challenges/{challengeId}");
     }
@@ -252,7 +276,7 @@ public class WorkshopController : Controller
 
     [HttpPost("/submitChallenge")]
     [Authorize]
-    public IActionResult SubmitChallenge(int workshopId, int challengeId) {
+    public IActionResult SubmitChallenge(int workshopId, int challengeId, string TargetStatus = "submitted") {
         Workshop workshopObj = workshopRepository.Workshops.Where(p => p.WorkshopId == workshopId).FirstOrDefault();
         Challenge challengeObj = challengeRepository.Challenges.Where(p => p.ChallengeId == challengeId).FirstOrDefault();
         string? userId = _userManager.GetUserId(User);
@@ -266,8 +290,12 @@ public class WorkshopController : Controller
         } else {
             Console.WriteLine("It is now pending...");
 
-            chPrg.ChallengeStatus = "submitted";
+            chPrg.ChallengeStatus = TargetStatus;
             challengeProgressRepository.SaveChallengeProgress(chPrg);
+        }
+
+        if (TargetStatus == "accepted" || TargetStatus == "rejected") {
+            return Redirect($"/admin/workshops/{workshopId}/users/{userId}");
         }
         return Redirect($"/workshops/{workshopId}/challenges/{challengeId}");
     }
@@ -295,6 +323,78 @@ public class WorkshopController : Controller
         }
 
         return Redirect($"/workshops/{workshopId}/challenges/{challengeId}");
+    }
+
+    // [HttpPost("/admin/workshops/{workshopId}/users/{userId}")]
+    // [Authorize]
+    // public ViewResult AdminShowActiveWorkshops (int workshopId, string userId) {
+    //     IList<Workshop> workshopList = workshopRepository.Workshops.ToList();
+    // }
+
+    [HttpGet("/admin/workshops/{workshopId}")]
+    [Authorize]
+    public ViewResult AdminShowAllUsersForWorkshop(int workshopId, string userId) {
+        IList<WorkshopProgress> workshopProgressList = workshopProgressRepository.WorkshopProgresses.Where(w => w.WorkshopId == workshopId).ToList();
+
+        return View(new OneWorkshopView {
+            WorkshopProgressList = workshopProgressList
+        });
+    }
+
+    [HttpGet("/admin/workshops/{workshopId}/users/{userId}")]
+    [Authorize]
+    public ViewResult AdminShowWorkshops(int workshopId, string userId) {
+        IList<ChallengeProgress> challengeProgressList = challengeProgressRepository.ChallengeProgresses.Where(chPrg => chPrg.WorkshopId == workshopId).ToList();   
+
+        IEnumerable<Challenge> challenges = challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == workshopId);
+        Dictionary<int,Challenge> ChallengeDict = new Dictionary<int,Challenge>();
+
+        foreach (Challenge ch in challenges) {
+            ChallengeDict[ch.ChallengeId] = ch;
+        };
+
+        IEnumerable<PointsLedgerEntry> ledgerTable = pointsLedgerEntryRepository.PointsLedgerEntries.Where(ple => ple.UserId == userId && ple.WorkshopId == workshopId);
+
+        String sumOfPoints = ledgerTable.Sum(i => i.Points).ToString();
+        Console.WriteLine($"The sum of points are {sumOfPoints}");
+        Console.WriteLine(ledgerTable);
+        Console.WriteLine(ledgerTable.Count());
+
+
+
+        return View(new OneWorkshopView {
+            ChallengeProgressList = challengeProgressList,
+            ChallengesDictionary = ChallengeDict,
+            LedgerTable = ledgerTable,
+            WorkshopId = workshopId,
+            sumOfPoints = sumOfPoints,
+            UserId = userId
+        });
+    }
+
+    public IActionResult AdminAddPoints(int WorkshopId, double PointsValue, string RemarksValue) {
+        string? userId = _userManager.GetUserId(User);
+
+        Workshop? workshopObj = workshopRepository.Workshops.Where(p => p.WorkshopId == WorkshopId).FirstOrDefault();
+
+        Console.WriteLine("And the workshop is");
+        Console.WriteLine(workshopObj);
+        Console.WriteLine(WorkshopId);
+
+        PointsLedgerEntry ple = new PointsLedgerEntry {
+            UserId = userId,
+            Workshop = workshopObj,
+            Points = PointsValue,
+            Remarks = $"Manual - {RemarksValue}"
+        };
+
+        Console.WriteLine("The ple is ready...");
+        Console.WriteLine(ple);
+        Console.WriteLine(ple.Points);
+
+        pointsLedgerEntryRepository.CreatePointsLedgerEntry(ple);
+
+        return Redirect($"/admin/workshops/{WorkshopId}");
     }
 
 }
