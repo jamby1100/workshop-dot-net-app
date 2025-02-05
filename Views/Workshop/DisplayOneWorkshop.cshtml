@@ -1,12 +1,22 @@
 @model OneWorkshopView
 
+<h4>
+    <a class="badge rounded-pill bg-primary text-white" style="float:left" href="/workshops"> 
+        << Back to Workshops
+    </a>
+</h4>
+
+
+<br>
+<br>
+
+
 <h1> @Model.WorkshopObject.Name </h1>
 <h3> @Model.WorkshopObject.Description </h3> 
-<h3> Number of Challenges: @Model.ChallengeProgressList </h3>
-<h3> Yes </h3>
+
 <h3> Number of Challenges: @Model.ChallengeProgressList.Count() </h3>
 
-And the wpobj is:
+
 @if (@Model.WorkshopProgressObject == null) {
     <p> You are not yet enrolled! </p>
 
@@ -23,8 +33,22 @@ And the wpobj is:
     <br>
 
     @foreach (var p in @Model.ChallengeProgressList) {
-        <h5> @p.Challenge.Name </h5>
-        <p> Status: @p.ChallengeStatus </p>
-        <a href="/workshops/@Model.WorkshopId/challenges/@p.ChallengeId"> View </a>
+        <div class="card card-outline-primary m-1 p-1">
+            <div class="bg-faded p-1">
+                <h4>
+                    @p.Challenge.Name
+                    <a class="badge rounded-pill bg-primary text-white" style="float:right" href="/workshops/@Model.WorkshopId/challenges/@p.ChallengeId"> 
+                        View
+                    </a>
+                </h4>
+                <p> Status: @p.ChallengeStatus </p>
+
+                
+            </div>
+            <span class="card-text p-1">
+                @p.Challenge.Description
+            </span>
+        </div>
+
     }
 }

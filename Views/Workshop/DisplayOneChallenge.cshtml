@@ -1,9 +1,61 @@
 @model OneWorkshopView
 
+<h4>
+    <a class="badge rounded-pill bg-primary text-white" style="float:left" href="/workshops/@Model.WorkshopId"> 
+        << Back to @Model.WorkshopObject.Name Workshop
+    </a>
+</h4>
+
+<br>
+<br>
+
+
 @foreach (var p in @Model.Challenges) {
     <h5> @p.Name </h5>
     <p> @p.Description</p>
     <p> @p.ChallengeBriefMarkdown</p>
+
+    @if (@Model.HintProgressList.Count() ==  0 && @Model.HintDictionary.Count() > 0) {
+        <form asp-action="DisplayHintsForChallenge" asp-controller="Workshop" method="post">
+            <input type="hidden" asp-for="ChallengeId" value="@p.ChallengeId"/>
+            <input type="hidden" asp-for="WorkshopId" value="@Model.WorkshopId"/>
+            <button class="btn btn-primary mt-2" type="submit">
+                Work with Hints on this Workshop
+            </button>
+        </form>
+    } else {
+        @foreach (var h in @Model.HintProgressList) {
+            <div class="card card-outline-primary m-1 p-1">
+                <div class="bg-faded p-1">
+                    <h4>
+                        @Model.HintDictionary[@h.HintId].Name
+
+                        <a class="badge rounded-pill bg-primary text-white" style="float:right" href="/workshops/@Model.WorkshopId"> 
+                            @h.HintStatus
+                        </a>
+                    </h4>
+                </div>
+
+                @if (@h.HintStatus == "pending") {
+                    <form asp-action="BuyThisHint" asp-controller="Workshop" method="post">
+                        <input type="hidden" asp-for="WorkshopId" value="@Model.WorkshopId"/>
+                        <input type="hidden" asp-for="ChallengeId" value="@p.ChallengeId"/>
+                        <input type="hidden" asp-for="HintId" value="@h.HintId"/>
+                        <button class="btn btn-primary mt-2" type="submit">
+                            Buy this Hint
+                        </button>
+                    </form>
+                } else if (@h.HintStatus == "bought") {
+                    <span class="card-text p-1">
+                        @Model.HintDictionary[@h.HintId].Body
+                    </span>
+                }
+
+            </div>
+        }
+    }
+
+    <br>
 
     @if (@Model.ChallengeProgressObject.ChallengeStatus == "pending") {
         <form asp-action="SubmitChallenge" asp-controller="Workshop" method="post">

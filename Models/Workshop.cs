@@ -10,7 +10,6 @@ namespace WorkshopApp.Models {
         [Required(ErrorMessage = "Pls enter a name")]
         public string? Name { get; set; }
 
-        [Required(ErrorMessage = "Pls enter description")]
         public string? Description { get; set; }
 
         [Required(ErrorMessage = "Add an estimate")]

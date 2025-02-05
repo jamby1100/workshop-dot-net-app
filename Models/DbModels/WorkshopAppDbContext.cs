@@ -10,5 +10,11 @@ namespace WorkshopApp.Models {
         public DbSet<WorkshopProgress> WorkshopProgresses => Set<WorkshopProgress>();
 
         public DbSet<ChallengeProgress> ChallengeProgresses => Set<ChallengeProgress>();
+
+        public DbSet<Hint> Hints => Set<Hint>();
+
+        public DbSet<HintProgress> HintProgresses => Set<HintProgress>();
+
+        public DbSet<PointsLedgerEntry> PointsLedgerEntries => Set<PointsLedgerEntry>();
     }
 }

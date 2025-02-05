@@ -85,6 +85,92 @@ namespace WorkshopApp.Migrations
                     b.ToTable("ChallengeProgresses");
                 });
 
+            modelBuilder.Entity("WorkshopApp.Models.Hint", b =>
+                {
+                    b.Property<int>("HintId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HintId"));
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ChallengeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WorkshopId")
+                        .HasColumnType("int");
+
+                    b.HasKey("HintId");
+
+                    b.HasIndex("ChallengeId");
+
+                    b.HasIndex("WorkshopId");
+
+                    b.ToTable("Hints");
+                });
+
+            modelBuilder.Entity("WorkshopApp.Models.HintProgress", b =>
+                {
+                    b.Property<int>("HintProgressId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HintProgressId"));
+
+                    b.Property<int>("HintId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HintStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("HintProgressId");
+
+                    b.HasIndex("HintId");
+
+                    b.ToTable("HintProgresses");
+                });
+
+            modelBuilder.Entity("WorkshopApp.Models.PointsLedgerEntry", b =>
+                {
+                    b.Property<int>("PointsLedgerEntryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PointsLedgerEntryId"));
+
+                    b.Property<int>("Points")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Remarks")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WorkshopId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PointsLedgerEntryId");
+
+                    b.HasIndex("WorkshopId");
+
+                    b.ToTable("PointsLedgerEntries");
+                });
+
             modelBuilder.Entity("WorkshopApp.Models.Workshop", b =>
                 {
                     b.Property<int>("WorkshopId")
@@ -94,7 +180,6 @@ namespace WorkshopApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WorkshopId"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("EstimateTimeToFinish")
@@ -160,6 +245,47 @@ namespace WorkshopApp.Migrations
                         .IsRequired();
 
                     b.Navigation("Challenge");
+
+                    b.Navigation("Workshop");
+                });
+
+            modelBuilder.Entity("WorkshopApp.Models.Hint", b =>
+                {
+                    b.HasOne("WorkshopApp.Models.Challenge", "Challenge")
+                        .WithMany()
+                        .HasForeignKey("ChallengeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WorkshopApp.Models.Workshop", "Workshop")
+                        .WithMany()
+                        .HasForeignKey("WorkshopId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Challenge");
+
+                    b.Navigation("Workshop");
+                });
+
+            modelBuilder.Entity("WorkshopApp.Models.HintProgress", b =>
+                {
+                    b.HasOne("WorkshopApp.Models.Hint", "Hint")
+                        .WithMany()
+                        .HasForeignKey("HintId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hint");
+                });
+
+            modelBuilder.Entity("WorkshopApp.Models.PointsLedgerEntry", b =>
+                {
+                    b.HasOne("WorkshopApp.Models.Workshop", "Workshop")
+                        .WithMany()
+                        .HasForeignKey("WorkshopId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Workshop");
                 });

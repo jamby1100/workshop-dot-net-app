@@ -15,7 +15,9 @@ builder.Services.AddScoped<IWorkshopRepository, EFWorkshopRepository>();
 builder.Services.AddScoped<IChallengeRepository, EFChallengeRepository>();
 builder.Services.AddScoped<IWorkshopProgressRepository, EFWorkshopProgressRepository>();
 builder.Services.AddScoped<IChallengeProgressRepository, EFChallengeProgressRepository>();
-
+builder.Services.AddScoped<IHintRepository, EFHintRepository>();
+builder.Services.AddScoped<IHintProgressRepository, EFHintProgressRepository>();
+builder.Services.AddScoped<IPointsLedgerEntryRepository, EFPointsLedgerEntryRepository>();
 
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>
     options.UseSqlServer(
