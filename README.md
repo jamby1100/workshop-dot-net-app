@@ -68,6 +68,8 @@ dotnet ef database update --context WorkshopAppDbContext
 
 
 dotnet ef database drop --context WorkshopAppDbContext --force 
+dotnet ef database drop --context AppIdentityDbContext --force 
+
 dotnet ef database update --context WorkshopAppDbContext
 
 ```
@@ -81,6 +83,6 @@ libman init -p cdnjs
 libman install font-awesome@6.2.1 -d wwwroot/lib/font-awesome
 libman install bootstrap@5.2.3 -d wwwroot/lib/font-awesome
 
-
+sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
 
 ```
