@@ -151,7 +151,7 @@ public class WorkshopController : Controller
                 UserDisplay = new UserDisplayViewModel {
                     UserId = userId,
                     UserName = _userManager.GetUserName(User),
-                    UserEmail = "",
+                    UserEmail = ""
                 }
             }
         );

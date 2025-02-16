@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkshopApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39aef7b945ef15c37ff565d2506192b7a33649d6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+967eb15f131ef3683d691bdf8922981aeacfa7fe")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkshopApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkshopApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
