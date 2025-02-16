@@ -71,6 +71,8 @@ dotnet ef database drop --context WorkshopAppDbContext --force
 dotnet ef database drop --context AppIdentityDbContext --force 
 
 dotnet ef database update --context WorkshopAppDbContext
+dotnet ef database update --context AppIdentityDbContext
+
 
 ```
 

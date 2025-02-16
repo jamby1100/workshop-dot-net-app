@@ -85,7 +85,7 @@ public class WorkshopController : Controller
     [HttpGet("/workshops/{workshopId}/challenges/{challengeId}")]
     [Authorize]
     public ViewResult DisplayOneChallenge(int workshopId, int challengeId) {
-        string userId = "c91607c4-3903-482d-b1c7-25bcc13d4696"; // && p.UserId == userId
+        string userId = _userManager.GetUserId(User); // && p.UserId == userId
         WorkshopProgress? userWp = workshopProgressRepository.WorkshopProgresses.Where(p => p.Workshop.WorkshopId == workshopId && p.UserId == userId).FirstOrDefault();
         Workshop? workshopObj = workshopRepository.Workshops.Where(p => p.WorkshopId == workshopId).FirstOrDefault();
         ChallengeProgress? userChlg = challengeProgressRepository.ChallengeProgresses.Where(p => p.Challenge.ChallengeId == challengeId && p.UserId == userId).FirstOrDefault();
