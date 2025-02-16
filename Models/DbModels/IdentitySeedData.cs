@@ -65,8 +65,8 @@ namespace WorkshopApp.Models {
                 user.PhoneNumber = "username: sls-group-9, password: wEWnHisK7UjPFwQ";
                 await userManager.CreateAsync(user, "wEWnHisK7UjPFwQ");
 
-                user = new IdentityUser("Helsinki");
-                user.Email = "Helsinki@example.com";
+                user = new IdentityUser("Julia");
+                user.Email = "Julia@example.com";
                 user.PhoneNumber = "username: sls-group-10, password: 0MLcWlcUlb89VBT";
                 await userManager.CreateAsync(user, "0MLcWlcUlb89VBT");
             } 
