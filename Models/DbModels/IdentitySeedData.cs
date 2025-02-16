@@ -18,6 +18,16 @@ namespace WorkshopApp.Models {
                 .GetRequiredService<UserManager<IdentityUser>>();
             
             IdentityUser? user = await userManager.FindByNameAsync(adminUser);
+            IdentityUser? user1;
+            IdentityUser? user2;
+            IdentityUser? user3;
+            IdentityUser? user4;
+            IdentityUser? user5;
+            IdentityUser? user6;
+            IdentityUser? user7;
+            IdentityUser? user8;
+            IdentityUser? user9;
+            IdentityUser? user10;
             
             if (user == null) {
                 user = new IdentityUser("Admin");
@@ -25,55 +35,55 @@ namespace WorkshopApp.Models {
                 user.PhoneNumber = "username: sls-group-1, password: adminPassword";
                 await userManager.CreateAsync(user, adminPassword);
 
-                user = new IdentityUser("Alpha");
-                user.Email = "Alpha@example.com";
-                user.PhoneNumber = "username: sls-group-1, password: oa9XQoZcUtS8e9v";
-                await userManager.CreateAsync(user, "oa9XQoZcUtS8e9v");
+                user1 = new IdentityUser("Alpha");
+                user1.Email = "Alpha@example.com";
+                user1.PhoneNumber = "username: sls-group-1, password: oa9XQoZcUtS8e9v";
+                await userManager.CreateAsync(user1, "oa9XQoZcUtS8e9v");
 
-                user = new IdentityUser("Beta");
-                user.Email = "Beta@example.com";
-                user.PhoneNumber = "username: sls-group-2, password: 7SbDIeXwD0c92qX";
-                await userManager.CreateAsync(user, "7SbDIeXwD0c92qX");
+                user2 = new IdentityUser("Beta");
+                user2.Email = "Beta@example.com";
+                user2.PhoneNumber = "username: sls-group-2, password: 7SbDIeXwD0c92qX";
+                await userManager.CreateAsync(user2, "7SbDIeXwD0c92qX");
 
-                user = new IdentityUser("Charlie");
-                user.Email = "Charlie@example.com";
-                user.PhoneNumber = "username: sls-group-3, password: 1QPUezhAwHOQsYX";
-                await userManager.CreateAsync(user, "1QPUezhAwHOQsYX");
+                user3 = new IdentityUser("Charlie");
+                user3.Email = "Charlie@example.com";
+                user3.PhoneNumber = "username: sls-group-3, password: 1QPUezhAwHOQsYX";
+                await userManager.CreateAsync(user3, "1QPUezhAwHOQsYX");
 
-                user = new IdentityUser("Delta");
-                user.Email = "Delta@example.com";
-                user.PhoneNumber = "username: sls-group-4, password: mOvIXwuL9hlq9Fe";
-                await userManager.CreateAsync(user, "mOvIXwuL9hlq9Fe");
+                user4 = new IdentityUser("Delta");
+                user4.Email = "Delta@example.com";
+                user4.PhoneNumber = "username: sls-group-4, password: mOvIXwuL9hlq9Fe";
+                await userManager.CreateAsync(user4, "mOvIXwuL9hlq9Fe");
 
-                user = new IdentityUser("Echo");
-                user.Email = "Echo@example.com";
-                user.PhoneNumber = "username: sls-group-5, password: cKJ1YqyLnBk7vqp";
-                await userManager.CreateAsync(user, "cKJ1YqyLnBk7vqp");
+                user5 = new IdentityUser("Echo");
+                user5.Email = "Echo@example.com";
+                user5.PhoneNumber = "username: sls-group-5, password: cKJ1YqyLnBk7vqp";
+                await userManager.CreateAsync(user5, "cKJ1YqyLnBk7vqp");
 
-                user = new IdentityUser("Foxtrot");
-                user.Email = "Foxtrot@example.com";
-                user.PhoneNumber = "username: sls-group-6, password: SDgZBsK3RkILPfL";
-                await userManager.CreateAsync(user, "SDgZBsK3RkILPfL");
+                user6 = new IdentityUser("Foxtrot");
+                user6.Email = "Foxtrot@example.com";
+                user6.PhoneNumber = "username: sls-group-6, password: SDgZBsK3RkILPfL";
+                await userManager.CreateAsync(user6, "SDgZBsK3RkILPfL");
 
-                user = new IdentityUser("Golf");
-                user.Email = "Golf@example.com";
-                user.PhoneNumber = "username: sls-group-7, password: 2eHUWwTChoK32mU";
-                await userManager.CreateAsync(user, "2eHUWwTChoK32mU");
+                user7 = new IdentityUser("Golf");
+                user7.Email = "Golf@example.com";
+                user7.PhoneNumber = "username: sls-group-7, password: 2eHUWwTChoK32mU";
+                await userManager.CreateAsync(user7, "2eHUWwTChoK32mU");
 
-                user = new IdentityUser("Helsinki");
-                user.Email = "Helsinki@example.com";
-                user.PhoneNumber = "username: sls-group-8, password: skX7mycWAD7RdMa";
-                await userManager.CreateAsync(user, "skX7mycWAD7RdMa");
+                user8 = new IdentityUser("Helsinki");
+                user8.Email = "Helsinki@example.com";
+                user8.PhoneNumber = "username: sls-group-8, password: skX7mycWAD7RdMa";
+                await userManager.CreateAsync(user8, "skX7mycWAD7RdMa");
 
-                user = new IdentityUser("Indigo");
-                user.Email = "Indigo@example.com";
-                user.PhoneNumber = "username: sls-group-9, password: wEWnHisK7UjPFwQ";
-                await userManager.CreateAsync(user, "wEWnHisK7UjPFwQ");
+                user9 = new IdentityUser("Indigo");
+                user9.Email = "Indigo@example.com";
+                user9.PhoneNumber = "username: sls-group-9, password: wEWnHisK7UjPFwQ";
+                await userManager.CreateAsync(user9, "wEWnHisK7UjPFwQ");
 
-                user = new IdentityUser("Julia");
-                user.Email = "Julia@example.com";
-                user.PhoneNumber = "username: sls-group-10, password: 0MLcWlcUlb89VBT";
-                await userManager.CreateAsync(user, "0MLcWlcUlb89VBT");
+                user10 = new IdentityUser("Julia");
+                user10.Email = "Julia@example.com";
+                user10.PhoneNumber = "username: sls-group-10, password: 0MLcWlcUlb89VBT";
+                await userManager.CreateAsync(user10, "0MLcWlcUlb89VBT");
             } 
         }
     }
