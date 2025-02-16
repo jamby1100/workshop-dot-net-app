@@ -13,7 +13,7 @@
 @foreach (var p in @Model.Challenges) {
     <h5> @p.Name </h5>
     <p> @p.Description</p>
-    <p> @p.ChallengeBriefMarkdown</p>
+    <p> @Html.Raw(@p.ChallengeBriefMarkdown) </p>
 
     @if (@Model.HintProgressList.Count() ==  0 && @Model.HintDictionary.Count() > 0) {
         <form asp-action="DisplayHintsForChallenge" asp-controller="Workshop" method="post">
@@ -48,7 +48,9 @@
                     </h6>
                 
                 @if (@h.HintStatus == "bought") {
-                    <p class="card-text">@Model.HintDictionary[@h.HintId].Body</p>
+                    <p class="card-text">
+                        @Html.Raw(@Model.HintDictionary[@h.HintId].Body)
+                    </p>
                 }
             </div>
             </div>

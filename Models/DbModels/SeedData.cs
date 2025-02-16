@@ -25,7 +25,7 @@ namespace WorkshopApp.Models {
                     Name = "Starting your Serverless Application",
                     Description = "Let's get started with your first serverless app deployment",
                     EstimateTimeToFinish = 10,
-                    ChallengeBriefMarkdown = "Visit the url here: https://www.notion.so/Challenge-1-18f9d79bc5b5808b936dea10dd94a269?pvs=4",
+                    ChallengeBriefMarkdown = "Visit the <a href='https://www.notion.so/Challenge-1-18f9d79bc5b5808b936dea10dd94a269?pvs=4'> challenge brief here </a>",
                     Workshop = w1,
                     Points=10
                 };
@@ -34,7 +34,7 @@ namespace WorkshopApp.Models {
                     Name = "Adding DynamoDB Capability",
                     Description = "Let's add a real database",
                     EstimateTimeToFinish = 30,
-                    ChallengeBriefMarkdown = "Visit the url here: https://walnut-raccoon-d7a.notion.site/Challenge-2-18f9d79bc5b580cd9273fe2f745bfd1f?pvs=4",
+                    ChallengeBriefMarkdown = "Visit the <a href='https://walnut-raccoon-d7a.notion.site/Challenge-2-18f9d79bc5b580cd9273fe2f745bfd1f?pvs=4'> challenge brief here </a>",
                     Workshop = w1,
                     Points=20
                 };
@@ -43,7 +43,7 @@ namespace WorkshopApp.Models {
                     Name = "Adding S3 File Batch Uploads",
                     Description = "Let's add a real database",
                     EstimateTimeToFinish = 30,
-                    ChallengeBriefMarkdown = "Visit the url here: https://walnut-raccoon-d7a.notion.site/Challenge-3-18f9d79bc5b580dd82bfd4644022a275?pvs=4",
+                    ChallengeBriefMarkdown = "Visit the <a href='https://walnut-raccoon-d7a.notion.site/Challenge-3-18f9d79bc5b580dd82bfd4644022a275?pvs=4'> challenge brief here </a> ",
                     Workshop = w1,
                     Points=30
                 };
@@ -52,7 +52,7 @@ namespace WorkshopApp.Models {
                     Name = "Adding SQS Capability",
                     Description = "Let's add a real database",
                     EstimateTimeToFinish = 30,
-                    ChallengeBriefMarkdown = "Visit the url here: https://walnut-raccoon-d7a.notion.site/Challenge-4-18f9d79bc5b5804c8f57f174a7cc9a52?pvs=4",
+                    ChallengeBriefMarkdown = "Visit the <a href='https://walnut-raccoon-d7a.notion.site/Challenge-4-18f9d79bc5b5804c8f57f174a7cc9a52?pvs=4'> challenge brief here </a>",
                     Workshop = w1,
                     Points=40
                 };
@@ -62,7 +62,7 @@ namespace WorkshopApp.Models {
 
                 Hint h2_1 = new Hint {
                     Name = "Hint 2.1: Accessing the request_body and the {product_id} in the url",
-                    Body = "https://walnut-raccoon-d7a.notion.site/Hint-2-1-18f9d79bc5b580c89563d1315d22ba69?pvs=4",
+                    Body = "Visit the <a href='https://walnut-raccoon-d7a.notion.site/Hint-2-1-18f9d79bc5b580c89563d1315d22ba69?pvs=4'> hint here </a>",
                     Challenge = c2,
                     Workshop = w1,
                     Price = 1
@@ -70,7 +70,7 @@ namespace WorkshopApp.Models {
 
                 Hint h2_2 = new Hint {
                     Name = "Hint 2.2: How to create GET, POST, PUT, PATCH, and DELETE API endpoints in serverless.yml",
-                    Body = "https://walnut-raccoon-d7a.notion.site/Hint-2-2-18f9d79bc5b5803395d1e5aadf63750b?pvs=4",
+                    Body = "Visit the <a href='https://walnut-raccoon-d7a.notion.site/Hint-2-2-18f9d79bc5b5803395d1e5aadf63750b?pvs=4'> hint here </a>",
                     Challenge = c2,
                     Workshop = w1,
                     Price = 1
@@ -78,7 +78,7 @@ namespace WorkshopApp.Models {
 
                 Hint h2_3 = new Hint {
                     Name = "Hint 2.3: HINT: Using boto3 to connect the database",
-                    Body = "https://walnut-raccoon-d7a.notion.site/Hint-2-3-18f9d79bc5b580dbb53ff632dab6a689?pvs=4",
+                    Body = "Visit the <a href='https://walnut-raccoon-d7a.notion.site/Hint-2-3-18f9d79bc5b580dbb53ff632dab6a689?pvs=4'> hint here </a>",
                     Challenge = c2,
                     Workshop = w1,
                     Price = 1
