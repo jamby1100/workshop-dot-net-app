@@ -20,6 +20,11 @@ namespace WorkshopApp.Models {
             IdentityUser? user = await userManager.FindByNameAsync(adminUser);
             
             if (user == null) {
+                user = new IdentityUser("Admin");
+                user.Email = "Admin@example.com";
+                user.PhoneNumber = "username: sls-group-1, password: adminPassword";
+                await userManager.CreateAsync(user, adminPassword);
+
                 user = new IdentityUser("Alpha");
                 user.Email = "Alpha@example.com";
                 user.PhoneNumber = "username: sls-group-1, password: oa9XQoZcUtS8e9v";
