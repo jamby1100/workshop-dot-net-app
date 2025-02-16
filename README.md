@@ -65,6 +65,8 @@ dotnet ef database update --context WorkshopAppDbContext
 dotnet ef migrations add AddPointsToChallenge --context WorkshopAppDbContext
 dotnet ef database update --context WorkshopAppDbContext
 
+dotnet ef migrations add AddWorkshopBrief --context WorkshopAppDbContext
+dotnet ef database update --context WorkshopAppDbContext
 
 
 dotnet ef database drop --context WorkshopAppDbContext --force 

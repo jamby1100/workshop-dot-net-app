@@ -12,10 +12,9 @@
 
 
 <h1> @Model.WorkshopObject.Name </h1>
-<h3> @Model.WorkshopObject.Description </h3> 
-
-<h3> Number of Challenges: @Model.ChallengeProgressList.Count() </h3>
-
+<h4> @Model.WorkshopObject.Description </h4> 
+<h4> Number of Challenges: @Model.ChallengeProgressList.Count() </h4>
+<p> @Model.WorkshopObject.WorkshopBriefMarkdown</p>
 
 @if (@Model.WorkshopProgressObject == null) {
     <p> You are not yet enrolled! </p>
