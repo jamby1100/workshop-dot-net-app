@@ -41,7 +41,7 @@ namespace WorkshopApp.Models {
 
                 Challenge c3 = new Challenge {
                     Name = "Adding S3 File Batch Uploads",
-                    Description = "Let's add a real database",
+                    Description = "Let's batch create S3 buckets",
                     EstimateTimeToFinish = 30,
                     ChallengeBriefMarkdown = "Visit the <a href='https://walnut-raccoon-d7a.notion.site/Challenge-3-18f9d79bc5b580dd82bfd4644022a275?pvs=4'> challenge brief here </a> ",
                     Workshop = w1,
@@ -50,9 +50,18 @@ namespace WorkshopApp.Models {
 
                 Challenge c4 = new Challenge {
                     Name = "Adding SQS Capability",
-                    Description = "Let's add a real database",
+                    Description = "Let's create the SQS queue",
                     EstimateTimeToFinish = 30,
                     ChallengeBriefMarkdown = "Visit the <a href='https://walnut-raccoon-d7a.notion.site/Challenge-4-18f9d79bc5b5804c8f57f174a7cc9a52?pvs=4'> challenge brief here </a>",
+                    Workshop = w1,
+                    Points=40
+                };
+
+                Challenge c5 = new Challenge {
+                    Name = "Productionizing your Serverless App",
+                    Description = "Let's build a strong Python App!",
+                    EstimateTimeToFinish = 30,
+                    ChallengeBriefMarkdown = "Visit the <a href='https://walnut-raccoon-d7a.notion.site/Challenge-5-Productionize-your-Python-Serverless-Application-1929d79bc5b58088bd73e8bc7414784e'> challenge brief here </a>",
                     Workshop = w1,
                     Points=40
                 };
