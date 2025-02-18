@@ -344,7 +344,7 @@ public class WorkshopController : Controller
     [HttpGet("/admin/workshops/{workshopId}/users/{userId}")]
     [Authorize]
     public ViewResult AdminShowWorkshops(int workshopId, string userId) {
-        IList<ChallengeProgress> challengeProgressList = challengeProgressRepository.ChallengeProgresses.Where(chPrg => chPrg.WorkshopId == workshopId).ToList();   
+        IList<ChallengeProgress> challengeProgressList = challengeProgressRepository.ChallengeProgresses.Where(chPrg => chPrg.WorkshopId == workshopId && chPrg.UserId == userId).ToList();   
 
         IEnumerable<Challenge> challenges = challengeRepository.Challenges.Where(p => p.Workshop.WorkshopId == workshopId);
         Dictionary<int,Challenge> ChallengeDict = new Dictionary<int,Challenge>();
