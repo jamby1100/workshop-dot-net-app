@@ -55,7 +55,7 @@
 
 <form asp-action="AdminAddPoints" asp-controller="Workshop" method="post">
     <input type="hidden" asp-for="WorkshopId" value="@Model.WorkshopId"/>
-    <input type="hidden" asp-for="TargetUserId">
+    <input type="hidden" asp-for="TargetUserId" value="@Model.TargetUserId"/>
     <input type="text" asp-for="PointsValue">
     <input type="text" asp-for="RemarksValue">
     <button class="btn btn-primary mt-2" type="submit">
