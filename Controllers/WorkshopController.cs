@@ -61,7 +61,7 @@ public class WorkshopController : Controller
         Dictionary<int,Challenge> ChallengeDict = new Dictionary<int,Challenge>();
         IEnumerable<ChallengeProgress> challengeProgressList = challengeProgressRepository.ChallengeProgresses.Where(cp => cp.Workshop.WorkshopId == workshopId && cp.UserId == userId);
 
-        IEnumerable<PointsLedgerEntry> ledgerTable = pointsLedgerEntryRepository.PointsLedgerEntries.Where(ple => ple.UserId == ple.UserId && ple.WorkshopId == workshopId);
+        IEnumerable<PointsLedgerEntry> ledgerTable = pointsLedgerEntryRepository.PointsLedgerEntries.Where(ple => ple.UserId == userId && ple.WorkshopId == workshopId);
 
         String sumOfPoints = ledgerTable.Sum(i => i.Points).ToString();
         Console.WriteLine($"The sum of points are {sumOfPoints}");
