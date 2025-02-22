@@ -372,9 +372,7 @@ public class WorkshopController : Controller
         });
     }
 
-    public IActionResult AdminAddPoints(int WorkshopId, double PointsValue, string RemarksValue) {
-        string? userId = _userManager.GetUserId(User);
-
+    public IActionResult AdminAddPoints(int WorkshopId, double PointsValue, string RemarksValue, string TargetUserId) {
         Workshop? workshopObj = workshopRepository.Workshops.Where(p => p.WorkshopId == WorkshopId).FirstOrDefault();
 
         Console.WriteLine("And the workshop is");
@@ -382,7 +380,7 @@ public class WorkshopController : Controller
         Console.WriteLine(WorkshopId);
 
         PointsLedgerEntry ple = new PointsLedgerEntry {
-            UserId = userId,
+            UserId = TargetUserId,
             Workshop = workshopObj,
             Points = PointsValue,
             Remarks = $"Manual - {RemarksValue}"

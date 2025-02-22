@@ -32,6 +32,8 @@ namespace WorkshopApp.Models.ViewModels {
 
         public string sumOfPoints { get; set; }
 
+        public string TargetUserId { get; set; }
+
         public double PointsValue { get; set; }
 
         public string RemarksValue { get; set; }
