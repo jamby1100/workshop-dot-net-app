@@ -16,6 +16,10 @@ dotnet ef database update --context AppIdentityDbContext
 
 # run the server
 dotnet run
+
+# visit: http://localhost:5084/login?ReturnUrl=%2Fworkshops
+
+# get a user from Models/DbModels/IdentitySeedData
 ```
 
 # Jamby's Corner
