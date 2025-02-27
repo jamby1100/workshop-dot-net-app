@@ -1,6 +1,9 @@
 # Setting it up
 
 ```sh
+# install microsoft sql server
+# change the config in appsettings.json
+
 # install the dotnet version
 # look at global.json for the version
 
