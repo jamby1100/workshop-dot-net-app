@@ -1,7 +1,18 @@
 # Setting it up
 
 ```sh
+# install the dotnet version
+# look at global.json for the version
 
+# clone the repo
+git clone https://github.com/jamby1100/workshop-dot-net-app
+
+# run the migrations
+dotnet ef database update --context WorkshopAppDbContext
+dotnet ef database update --context AppIdentityDbContext
+
+# run the server
+dotnet run
 ```
 
 # Jamby's Corner
