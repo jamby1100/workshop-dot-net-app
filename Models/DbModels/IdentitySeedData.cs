@@ -43,77 +43,77 @@ namespace WorkshopApp.Models {
                 user1 = new IdentityUser("Alpha");
                 user1.Email = "Alpha@example.com";
                 user1.PhoneNumber = "username: sls-group-1, password: oa9XQoZcUtS8e9v";
-                await userManager.CreateAsync(user1, "pythonWorkshop1$$");
+                await userManager.CreateAsync(user1, "pythonWorkshop$$");
 
                 user2 = new IdentityUser("Beta");
                 user2.Email = "Beta@example.com";
                 user2.PhoneNumber = "username: sls-group-2, password: 7SbDIeXwD0c92qX";
-                await userManager.CreateAsync(user2, "pythonWorkshop2$$");
+                await userManager.CreateAsync(user2, "pythonWorkshop$$");
 
                 user3 = new IdentityUser("Charlie");
                 user3.Email = "Charlie@example.com";
                 user3.PhoneNumber = "username: sls-group-3, password: 1QPUezhAwHOQsYX";
-                await userManager.CreateAsync(user3, "pythonWorkshop3$$");
+                await userManager.CreateAsync(user3, "pythonWorkshop$$");
 
                 user4 = new IdentityUser("Delta");
                 user4.Email = "Delta@example.com";
                 user4.PhoneNumber = "username: sls-group-4, password: mOvIXwuL9hlq9Fe";
-                await userManager.CreateAsync(user4, "pythonWorkshop4$$");
+                await userManager.CreateAsync(user4, "pythonWorkshop$$");
 
                 user5 = new IdentityUser("Echo");
                 user5.Email = "Echo@example.com";
                 user5.PhoneNumber = "username: sls-group-5, password: cKJ1YqyLnBk7vqp";
-                await userManager.CreateAsync(user5, "pythonWorkshop5$$");
+                await userManager.CreateAsync(user5, "pythonWorkshop$$");
 
                 user6 = new IdentityUser("Foxtrot");
                 user6.Email = "Foxtrot@example.com";
                 user6.PhoneNumber = "username: sls-group-6, password: SDgZBsK3RkILPfL";
-                await userManager.CreateAsync(user6, "pythonWorkshop6$$");
+                await userManager.CreateAsync(user6, "pythonWorkshop$$");
 
                 user7 = new IdentityUser("Golf");
                 user7.Email = "Golf@example.com";
                 user7.PhoneNumber = "username: sls-group-7, password: 2eHUWwTChoK32mU";
-                await userManager.CreateAsync(user7, "pythonWorkshop7$$");
+                await userManager.CreateAsync(user7, "pythonWorkshop$$");
 
                 user8 = new IdentityUser("Helsinki");
                 user8.Email = "Helsinki@example.com";
                 user8.PhoneNumber = "username: sls-group-8, password: skX7mycWAD7RdMa";
-                await userManager.CreateAsync(user8, "pythonWorkshop8$$");
+                await userManager.CreateAsync(user8, "pythonWorkshop$$");
 
                 user9 = new IdentityUser("Indigo");
                 user9.Email = "Indigo@example.com";
                 user9.PhoneNumber = "username: sls-group-9, password: wEWnHisK7UjPFwQ";
-                await userManager.CreateAsync(user9, "pythonWorkshop9$$");
+                await userManager.CreateAsync(user9, "pythonWorkshop$$");
 
                 user10 = new IdentityUser("Julia");
                 user10.Email = "Julia@example.com";
                 user10.PhoneNumber = "username: sls-group-10, password: 0MLcWlcUlb89VBT";
-                await userManager.CreateAsync(user10, "pythonWorkshop10$$");
+                await userManager.CreateAsync(user10, "pythonWorkshop$$");
 
                 user11 = new IdentityUser("Kilo");
                 user11.Email = "Kilo@example.com";
                 user11.PhoneNumber = "username: sls-group-11, password: 0MLcWlcUlb89VBT";
-                await userManager.CreateAsync(user11, "pythonWorkshop11$$");
+                await userManager.CreateAsync(user11, "pythonWorkshop$$");
 
                 user12 = new IdentityUser("Lima");
                 user12.Email = "Lima@example.com";
                 user12.PhoneNumber = "username: sls-group-12, password: 0MLcWlcUlb89VBT";
-                await userManager.CreateAsync(user12, "pythonWorkshop12$$");
+                await userManager.CreateAsync(user12, "pythonWorkshop$$");
 
                 user13 = new IdentityUser("Manila");
                 user13.Email = "Manila@example.com";
                 user13.PhoneNumber = "username: sls-group-13, password: 0MLcWlcUlb89VBT";
-                await userManager.CreateAsync(user13, "pythonWorkshop13$$");
+                await userManager.CreateAsync(user13, "pythonWorkshop$$");
 
                 user14 = new IdentityUser("North");
                 user14.Email = "North@example.com";
                 user14.PhoneNumber = "username: sls-group-14, password: 0MLcWlcUlb89VBT";
-                await userManager.CreateAsync(user13, "pythonWorkshop14$$");
+                await userManager.CreateAsync(user13, "pythonWorkshop$$");
 
                 user15 = new IdentityUser("Oscar");
                 user15.Email = "Oscar@example.com";
                 user15.PhoneNumber = "username: sls-group-15, password: 0MLcWlcUlb89VBT";
-                await userManager.CreateAsync(user13, "pythonWorkshop15$$");
+                await userManager.CreateAsync(user13, "pythonWorkshop$$");
             } 
         }
     }
