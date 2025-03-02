@@ -90,28 +90,28 @@ namespace WorkshopApp.Models {
                 user10.PhoneNumber = "username: sls-group-10, password: 0MLcWlcUlb89VBT";
                 await userManager.CreateAsync(user10, "pythonWorkshop10$$");
 
-                user11 = new IdentityUser("Julia");
-                user11.Email = "Julia@example.com";
+                user11 = new IdentityUser("Kilo");
+                user11.Email = "Kilo@example.com";
                 user11.PhoneNumber = "username: sls-group-11, password: 0MLcWlcUlb89VBT";
                 await userManager.CreateAsync(user11, "pythonWorkshop11$$");
 
-                user12 = new IdentityUser("Julia");
-                user12.Email = "Julia@example.com";
+                user12 = new IdentityUser("Lima");
+                user12.Email = "Lima@example.com";
                 user12.PhoneNumber = "username: sls-group-12, password: 0MLcWlcUlb89VBT";
                 await userManager.CreateAsync(user12, "pythonWorkshop12$$");
 
-                user13 = new IdentityUser("Julia");
-                user13.Email = "Julia@example.com";
+                user13 = new IdentityUser("Manila");
+                user13.Email = "Manila@example.com";
                 user13.PhoneNumber = "username: sls-group-13, password: 0MLcWlcUlb89VBT";
                 await userManager.CreateAsync(user13, "pythonWorkshop13$$");
 
-                user14 = new IdentityUser("Julia");
-                user14.Email = "Julia@example.com";
+                user14 = new IdentityUser("North");
+                user14.Email = "North@example.com";
                 user14.PhoneNumber = "username: sls-group-14, password: 0MLcWlcUlb89VBT";
                 await userManager.CreateAsync(user13, "pythonWorkshop14$$");
 
-                user15 = new IdentityUser("Julia");
-                user15.Email = "Julia@example.com";
+                user15 = new IdentityUser("Oscar");
+                user15.Email = "Oscar@example.com";
                 user15.PhoneNumber = "username: sls-group-15, password: 0MLcWlcUlb89VBT";
                 await userManager.CreateAsync(user13, "pythonWorkshop15$$");
             } 
