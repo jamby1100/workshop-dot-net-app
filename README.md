@@ -2,17 +2,39 @@
 
 ```sh
 # install microsoft sql server
+curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
+curl -sSL https://packages.microsoft.com/config/ubuntu/22.04/mssql-server-2022.list | sudo tee /etc/apt/sources.list.d/mssql-server.list
+sudo apt update
+sudo apt install -y mssql-server
+sudo /opt/mssql/bin/mssql-conf setup
+sudo systemctl start mssql-server
+sudo systemctl enable mssql-server
 # change the config in appsettings.json
 
 # install the dotnet version
 # look at global.json for the version
+wget https://dot.net/v1/dotnet-install.sh
+chmod +x dotnet-install.sh
+./dotnet-install.sh --version 8.0.404 --install-dir $HOME/dotnet
+echo 'export DOTNET_ROOT=$HOME/dotnet' >> ~/.bashrc
+echo 'export PATH=$PATH:$HOME/dotnet' >> ~/.bashrc
+source ~/.bashrc
+dotnet --version
 
 # clone the repo
 git clone https://github.com/jamby1100/workshop-dot-net-app
+cd workshop-dot-net-app
+dotnet tool install --global dotnet-ef
+echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> ~/.bashrc
+source ~/.bashrc
+dotnet ef --version
 
 # run the migrations
 dotnet ef database update --context WorkshopAppDbContext
 dotnet ef database update --context AppIdentityDbContext
+
+# install all the packages
+dotnet restore
 
 # run the server
 dotnet run
